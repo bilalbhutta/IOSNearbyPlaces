@@ -115,7 +115,7 @@ class MapViewController: UIViewController {
         return from.distance(from: to)
     }
     
-    func handleSwipe(sender: UISwipeGestureRecognizer) {
+    @objc func handleSwipe(sender: UISwipeGestureRecognizer) {
         
         guard index >= 0, places.count > 0 else {
             return

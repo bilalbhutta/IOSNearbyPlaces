@@ -96,7 +96,7 @@ class QPlace: NSObject {
     
     func heightForComment(_ font: UIFont, width: CGFloat) -> CGFloat {
         let desc = getDescription()
-        let rect = NSString(string: desc).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
+        let rect = NSString(string: desc).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSAttributedStringKey.font: font], context: nil)
         return ceil(rect.height)
     }
     
