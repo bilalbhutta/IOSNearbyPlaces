@@ -205,6 +205,10 @@ class NearbyPlacesViewController: UICollectionViewController, UICollectionViewDe
 extension NearbyPlacesViewController: CLLocationManagerDelegate {
     
     func determineMyCurrentLocation() {
+        guard currentLocation == nil else {
+            return
+        }
+        
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.desiredAccuracy = kCLLocationAccuracyBest
