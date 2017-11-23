@@ -8,6 +8,7 @@
 
 import UIKit
 import AlamofireImage
+import SafariServices
 
 class PlacesCell: UICollectionViewCell {
     let maxWidht = 600
@@ -15,6 +16,8 @@ class PlacesCell: UICollectionViewCell {
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    weak var delegate: PlaceCellDelegate?
+    var place: QPlace?
     
     override func awakeFromNib() {
         super.awakeFromNib()        
@@ -24,6 +27,7 @@ class PlacesCell: UICollectionViewCell {
     }
     
     func update(place:QPlace) {
+        self.place = place
         label.text = place.getDescription()
         imageView.image = nil
         
@@ -31,4 +35,13 @@ class PlacesCell: UICollectionViewCell {
             imageView.af_setImage(withURL: url)
         }
     }
+    @IBAction func callbackWebsiteButton(_ sender: Any) {
+        if let place = place, let delegate = delegate {
+            delegate.didClickWebsite(place: place)
+        }
+    }
+}
+
+protocol PlaceCellDelegate: class {
+    func didClickWebsite(place: QPlace)
 }

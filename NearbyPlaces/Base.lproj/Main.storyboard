@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Bsb-AT-Wba">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Bsb-AT-Wba">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Categories View Controller-->
         <scene sceneID="j33-sL-oys">
             <objects>
-                <tableViewController id="vR4-T2-4Rz" customClass="CategoriesViewController" customModule="QIAssignment" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="vR4-T2-4Rz" customClass="CategoriesViewController" customModule="NearbyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cji-nT-rkI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,8 +44,8 @@
         <!--Nearby Places View Controller-->
         <scene sceneID="UiL-hY-5eJ">
             <objects>
-                <collectionViewController id="E26-H4-UE6" customClass="NearbyPlacesViewController" customModule="QIAssignment" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="NSX-5W-8iS">
+                <collectionViewController id="E26-H4-UE6" customClass="NearbyPlacesViewController" customModule="NearbyPlaces" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="NSX-5W-8iS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -56,7 +56,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlacesCell" id="CHr-9o-POU" customClass="PlacesCell" customModule="QIAssignment" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlacesCell" id="CHr-9o-POU" customClass="PlacesCell" customModule="NearbyPlaces" customModuleProvider="target">
                                 <rect key="frame" x="73.5" y="0.0" width="228" height="215"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -75,6 +75,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OrU-f3-rhn">
+                                                    <rect key="frame" x="2" y="2" width="56" height="30"/>
+                                                    <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                                    <state key="normal" title="Website"/>
+                                                    <connections>
+                                                        <action selector="callbackWebsiteButton:" destination="CHr-9o-POU" eventType="touchUpInside" id="Oly-tf-YDk"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.78205583479020979" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -83,6 +91,8 @@
                                                 <constraint firstItem="EqV-5w-gA2" firstAttribute="leading" secondItem="PDu-5K-IAJ" secondAttribute="leading" id="Cto-pH-ya2"/>
                                                 <constraint firstItem="Isb-WY-6QI" firstAttribute="leading" secondItem="PDu-5K-IAJ" secondAttribute="leading" constant="15" id="Ktc-gY-xGG"/>
                                                 <constraint firstItem="Isb-WY-6QI" firstAttribute="top" secondItem="EqV-5w-gA2" secondAttribute="bottom" constant="5" id="Mny-dL-6gD"/>
+                                                <constraint firstItem="OrU-f3-rhn" firstAttribute="top" secondItem="PDu-5K-IAJ" secondAttribute="top" constant="2" id="RQ8-Zk-STL"/>
+                                                <constraint firstItem="OrU-f3-rhn" firstAttribute="leading" secondItem="PDu-5K-IAJ" secondAttribute="leading" constant="2" id="SPe-YD-68W"/>
                                                 <constraint firstItem="EqV-5w-gA2" firstAttribute="top" secondItem="PDu-5K-IAJ" secondAttribute="top" id="b75-YZ-xDk"/>
                                                 <constraint firstAttribute="bottom" secondItem="Isb-WY-6QI" secondAttribute="bottom" constant="5" id="d4h-z4-D6B"/>
                                             </constraints>
@@ -118,7 +128,7 @@
         <!--Map View Controller-->
         <scene sceneID="Ptj-DL-MO9">
             <objects>
-                <viewController id="D7T-wF-C5e" customClass="MapViewController" customModule="QIAssignment" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="D7T-wF-C5e" customClass="MapViewController" customModule="NearbyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Ez-xt-c5f"/>
                         <viewControllerLayoutGuide type="bottom" id="cgk-n6-FAv"/>
@@ -186,7 +196,7 @@
             <objects>
                 <navigationController id="Bsb-AT-Wba" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="ehr-Yv-qnB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

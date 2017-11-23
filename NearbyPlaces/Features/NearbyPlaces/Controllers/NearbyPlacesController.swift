@@ -18,6 +18,7 @@ class NearbyPlacesController {
         
     static let searchApiHost = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"
     static let googlePhotosHost = "https://maps.googleapis.com/maps/api/place/photo"
+    static let googlePlaceDetailsHost = "https://maps.googleapis.com/maps/api/place/details/json"
     
     static func getNearbyPlaces(by category:String, coordinates:CLLocationCoordinate2D, radius:Int, token: String?, completion: @escaping (QNearbyPlacesResponse?) -> Void) {
     
@@ -37,6 +38,7 @@ class NearbyPlacesController {
             ]
         }
         
+        
         Alamofire.request(searchApiHost, parameters: params, encoding: URLEncoding(destination: .queryString)).responseJSON { response in
             
             let response = QNearbyPlacesResponse.init(dic: response.result.value as? [String: Any])
@@ -44,10 +46,31 @@ class NearbyPlacesController {
         }
     }
     
+    static func getPlaceDetails(place:QPlace, completion: @escaping (QPlace) -> Void) {
+        
+        guard place.details == nil else {
+            completion(place)
+            return
+        }
+        
+        var params : [String : Any]
+        params = [
+            "key" : AppDelegate.googlePlacesAPIKey,
+            "placeid" : place.placeId,
+        ]
+        
+        Alamofire.request(googlePlaceDetailsHost, parameters: params, encoding: URLEncoding(destination: .queryString)).responseJSON { response in
+            let value = response.result.value as? [String : Any]
+            place.details = (value)?["result"] as? [String : Any]
+            completion(place)
+        }
+    }
+    
     static func googlePhotoURL(photoReference:String, maxWidth:Int) -> URL? {
         return URL.init(string: "\(googlePhotosHost)?maxwidth=\(maxWidth)&key=\(AppDelegate.googlePlacesAPIKey)&photoreference=\(photoReference)")
     }
 }
+
 
 struct QNearbyPlacesResponse {
     var nextPageToken: String?

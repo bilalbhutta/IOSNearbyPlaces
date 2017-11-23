@@ -23,6 +23,7 @@ private let photosKey = "photos"
 
 class QPlace: NSObject {
     
+    var placeId: String
     var location: CLLocationCoordinate2D?
     var name: String?
     var photos: [QPhoto]?
@@ -30,7 +31,12 @@ class QPlace: NSObject {
     var isOpen: Bool?
     var types: [String]?
     
+    var details: [String : Any]?
+    
     init(placeInfo:[String: Any]) {
+        // id
+        placeId = placeInfo["place_id"] as! String
+        
         // coordinates
         if let g = placeInfo[geometryKey] as? [String:Any] {
             if let l = g[locationKey] as? [String:Double] {
@@ -93,6 +99,8 @@ class QPlace: NSObject {
         let rect = NSString(string: desc).boundingRect(with: CGSize(width: width, height: CGFloat(MAXFLOAT)), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName: font], context: nil)
         return ceil(rect.height)
     }
+    
+    
     
     
 }

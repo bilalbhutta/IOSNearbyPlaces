@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import AVFoundation
+import SafariServices
 
 private let reuseIdentifier = "PlacesCell"
 
@@ -112,6 +113,7 @@ class NearbyPlacesViewController: UICollectionViewController, UICollectionViewDe
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! PlacesCell
         
         let place = places[indexPath.row]
+        cell.delegate = self
         cell.update(place: place)
         
         if indexPath.row == places.count - 1 {
@@ -241,4 +243,13 @@ extension NearbyPlacesViewController: CLLocationManagerDelegate {
     }
 }
 
-
+extension NearbyPlacesViewController: PlaceCellDelegate {
+    func didClickWebsite(place: QPlace) {
+        NearbyPlacesController.getPlaceDetails(place: place) { (place) in
+            if let website = place.details?["website"] as? String, let url = URL(string: website) {
+                let svc = SFSafariViewController.init(url: url)
+                self.navigationController?.pushViewController(svc, animated: true)
+            }
+        }
+    }
+}
